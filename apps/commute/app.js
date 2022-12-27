@@ -159,7 +159,13 @@ class RecordingScreen extends Screen {
 
     if (this.recordings.length === this.stages.length) {
       this.saveRecordings();
-      this.app.changeScreen(new SummaryScreen(this.app));
+      this.app.changeScreen(
+        new SummaryScreen(
+          this.app,
+          this.recordings[0],
+          this.recordings[this.recordings.length - 1]
+        )
+      );
     }
   }
 
@@ -202,7 +208,18 @@ class RecordingScreen extends Screen {
 }
 
 class SummaryScreen extends Screen {
+  constructor(app, startTime, endTime) {
+    super(app);
+    this.startTime = startTime;
+    this.endTime = endTime;
+  }
+
   createLayout() {
+    const deltaS = Math.floor((this.endTime - this.startTime) / 1000);
+
+    const mins = Math.floor(deltaS / 60) % 60;
+    const hours = Math.floor(deltaS / 3600);
+
     return new Layout(
       {
         type: "v",
@@ -217,13 +234,13 @@ class SummaryScreen extends Screen {
           { height: 5 },
           {
             type: "txt",
-            label: "1 hr",
+            label: `${pad(hours)} hrs`,
             font: "6x8:4",
             halign: -1,
           },
           {
             type: "txt",
-            label: "24 mins",
+            label: `${pad(mins)} mins`,
             font: "6x8:4",
             halign: -1,
           },
