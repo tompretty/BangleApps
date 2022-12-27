@@ -1,0 +1,12 @@
+{ "id": "commute",
+  "name": "My Commuting app",
+  "shortName":"Commute",
+  "icon": "app.png",
+  "version":"0.01",
+  "description": "An app for keeping track of commuting times",
+  "tags": "",
+  "storage": [
+    {"name":"commute.app.js","url":"app.js"},
+    {"name":"commute.img","url":"app-icon.js","evaluate":true}
+  ]
+}
