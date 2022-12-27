@@ -58,15 +58,11 @@ class MenuScreen extends Screen {
             label: "-> work",
             cb: () =>
               this.app.changeScreen(
-                new RecordingScreen(this.app, [
-                  "->",
-                  "WA",
-                  "WD",
-                  "HA",
-                  "HD",
-                  "<-",
-                ]),
-                "to-work.csv"
+                new RecordingScreen(
+                  this.app,
+                  ["->", "WA", "WD", "HA", "HD", "<-"],
+                  "commute.data.to-work.csv"
+                )
               ),
             font: "6x8:3",
             halign: -1,
@@ -77,15 +73,11 @@ class MenuScreen extends Screen {
             label: "<- work",
             cb: () =>
               this.app.changeScreen(
-                new RecordingScreen(this.app, [
-                  "->",
-                  "CD",
-                  "HA",
-                  "HD",
-                  "WA",
-                  "<-",
-                ]),
-                "from-work.csv"
+                new RecordingScreen(
+                  this.app,
+                  ["->", "CD", "HA", "HD", "WA", "<-"],
+                  "commute.data.to-work.csv"
+                )
               ),
             font: "6x8:3",
             halign: -1,

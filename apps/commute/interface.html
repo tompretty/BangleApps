@@ -17,7 +17,7 @@
         Util.showModal("Loading...");
         // get the data
         dataElement.innerHTML = "";
-        Util.readStorageFile(`to-work.csv`, (data) => {
+        Util.readStorageFile(`commute.data.to-work.csv`, (data) => {
           csvData = data.trim();
           // remove window
           Util.hideModal();
