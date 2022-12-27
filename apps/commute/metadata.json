@@ -3,7 +3,7 @@
   "name": "Commute",
   "shortName": "Commute",
   "icon": "app.png",
-  "version": "0.03",
+  "version": "0.04",
   "description": "An app for keeping track of commuting times",
   "interface": "interface.html",
   "tags": "",

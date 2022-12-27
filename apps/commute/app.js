@@ -214,6 +214,10 @@ class SummaryScreen extends Screen {
     this.endTime = endTime;
   }
 
+  enter() {
+    setWatch(() => load(), BTN, {});
+  }
+
   createLayout() {
     const deltaS = Math.floor((this.endTime - this.startTime) / 1000);
 
