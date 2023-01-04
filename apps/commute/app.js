@@ -97,12 +97,12 @@ class RecordingScreen extends Screen {
 
     this.recordings = [];
 
-    this.interval = null;
+    this.timeout = null;
     this.watch = null;
   }
 
   enter() {
-    this.interval = setInterval(() => this.updateTime(), 1000);
+    this.startUpdateLoop();
     this.watch = setWatch((e) => this.onButtonPressed(e), BTN, {
       repeat: true,
       edge: -1,
@@ -110,8 +110,18 @@ class RecordingScreen extends Screen {
   }
 
   exit() {
-    clearInterval(this.interval);
+    clearTimeout(this.timeout);
     clearWatch(this.watch);
+  }
+
+  startUpdateLoop() {
+    const loop = () => {
+      this.updateTime();
+
+      this.timeout = setTimeout(loop, getMsUntilNextUpdate());
+    };
+
+    this.timeout = setTimeout(loop, getMsUntilNextUpdate());
   }
 
   updateTime() {
@@ -253,6 +263,19 @@ class SummaryScreen extends Screen {
       { lazy: true }
     );
   }
+}
+
+function getMsUntilNextUpdate() {
+  const now = new Date();
+  const nextUpdate = new Date(
+    now.getFullYear(),
+    now.getMonth(),
+    now.getDate(),
+    now.getHours(),
+    now.getMinutes() + 1
+  );
+
+  return nextUpdate - now;
 }
 
 function getDisplayTime(date) {
